@@ -6,7 +6,9 @@ from fsm import TocMachine
 app = Bottle()
 
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
+# VERIFY_TOKEN = 'verify12345'
 PORT = os.environ['PORT']
+# PORT = '5000'
 
 machine = TocMachine(
     states=[

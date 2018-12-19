@@ -4,7 +4,7 @@ import requests
 
 GRAPH_URL = "https://graph.facebook.com/v2.6"
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-
+# ACCESS_TOKEN = 'access12345'
 
 def send_text_message(id, text):
     url = "{0}/me/messages?access_token={1}".format(GRAPH_URL, ACCESS_TOKEN)
