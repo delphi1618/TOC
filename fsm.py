@@ -37,7 +37,7 @@ class TocMachine(GraphMachine):
     def to_music2(self, event):
         if event.get("message") and event['message'].get("text"):
             text = event['message']['text']
-            return text.lower() == 'yes!'
+            return text.lower() == 'yes'
         return False
 
     def to_ch1(self, event):
@@ -197,7 +197,8 @@ class TocMachine(GraphMachine):
         print("I'm entering jp1")
 
         sender_id = event['sender']['id']
-        send_text_message(sender_id, "林北哪有那麼多時間陪你講笑話.")
+        send_text_message(sender_id, "林北哪有那麼多時間陪你講笑話
+        send_text_message(sender_id, "Let's start again! If you want to listen to music, type music. If you want to watch some funny videos, type video. If you want to see some jokes, type joke.")
         self.go_back()
 
     def on_enter_fun1(self, event):
@@ -226,6 +227,7 @@ class TocMachine(GraphMachine):
 
         sender_id = event['sender']['id']
         send_text_message(sender_id, "你如果都好好看完了表示眼睛該休息了!")
+        send_text_message(sender_id, "Let's start again! If you want to listen to music, type music. If you want to watch some funny videos, type video. If you want to see some jokes, type joke.")
         self.go_back()
 
     def on_exit_state2(self):

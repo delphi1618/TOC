@@ -56,7 +56,7 @@ machine = TocMachine(
         },
         {
             'trigger': 'advance',
-            'source': 'musicl',
+            'source': 'music1',
             'dest': 'music2',
             'conditions': 'to_music2'
         },
