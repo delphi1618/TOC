@@ -150,7 +150,7 @@ machine = TocMachine(
             ],
             'dest': 'start1',
             'conditions': 'to_beg'
-        }
+        },
         {
             'trigger': 'go_back',
             'source': [
