@@ -64,12 +64,6 @@ def webhook_handler():
 
     if body['object'] == "page":
         event = body['entry'][0]['messaging'][0]
-"""
-        if event.get("message"):
-            text = 'text'
-            sender_id = event['sender']['id']
-            send_text_message(sender_id, text)
-"""
         machine.advance(event)
         return 'OK'
 
