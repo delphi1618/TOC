@@ -37,7 +37,7 @@ class TocMachine(GraphMachine):
     def to_music2(self, event):
         if event.get("message") and event['message'].get("text"):
             text = event['message']['text']
-            return text.lower() == 'yes'
+            return text.lower() == 'yes!'
         return False
 
     def to_ch1(self, event):
