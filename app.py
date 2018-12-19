@@ -1,62 +1,39 @@
-from flask import Flask, request, Response
-import requests, json, random, os
-app = Flask(__name__)
+import os
+from bottle import Bottle, request, abort, static_file
+from utils import send_text_message
 
-# env_variables
-# token to verify that this bot is legit
-verify_token = os.getenv('VERIFY_TOKEN', None)
-# token to send messages through facebook messenger
-access_token = os.getenv('ACCESS_TOKEN', None)
-# verify_token = '123454321'
-@app.route('/webhook', methods=['GET'])
-def webhook_verify():
-    if request.args.get('hub.verify_token') == verify_token:
-        return request.args.get('hub.challenge')
-    return "Wrong verify token"
+app = Bottle()
 
-@app.route('/webhook', methods=['POST'])
-def webhook_action():
-    data = json.loads(request.data.decode('utf-8'))
-    for entry in data['entry']:
-        user_message = entry['messaging'][0]['message']['text']
-        user_id = entry['messaging'][0]['sender']['id']
-        response = {
-            'recipient': {'id': user_id},
-            'message': {}
-        }
-        response['message']['text'] = handle_message(user_id, user_message)
-        r = requests.post(
-            'https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
-    return Response(response="EVENT RECEIVED",status=200)
+VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
+PORT = os.environ['PORT']
 
-@app.route('/webhook_dev', methods=['POST'])
-def webhook_dev():
-    # custom route for local development
-    data = json.loads(request.data.decode('utf-8'))
-    user_message = data['entry'][0]['messaging'][0]['message']['text']
-    user_id = data['entry'][0]['messaging'][0]['sender']['id']
-    response = {
-        'recipient': {'id': user_id},
-        'message': {'text': handle_message(user_id, user_message)}
-    }
-    return Response(
-        response=json.dumps(response),
-        status=200,
-        mimetype='application/json'
-    )
+@app.route("/webhook", method="GET")
+def setup_webhook():
+    mode = request.GET.get("hub.mode")
+    token = request.GET.get("hub.verify_token")
+    challenge = request.GET.get("hub.challenge")
 
-def handle_message(user_id, user_message):
-    # DO SOMETHING with the user_message ... ¯\_(ツ)_/¯
-    return "Hello "+user_id+" ! You just sent me : " + user_message
+    if mode == "subscribe" and token == VERIFY_TOKEN:
+        print("WEBHOOK_VERIFIED")
+        return challenge
 
-@app.route('/privacy', methods=['GET'])
-def privacy():
-    # needed route if you need to make your bot public
-    return "This facebook messenger bot's only purpose is to [...]. That's all. We don't use it in any other way."
+    else:
+        abort(403)
 
-@app.route('/', methods=['GET'])
-def index():
-    return "Hello there, I'm a facebook messenger bot."
+@app.route("/webhook", method="POST")
+def webhook_handler():
+    body = request.json
+    print('REQUEST BODY: ')
+    print(body)
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    if body['object'] == "page":
+        event = body['entry'][0]['messaging'][0]
+        if event.get("message"):
+            text = event['message']['text']
+            sender_id = event['sender']['id']
+            send_text_message(sender_id, text)
+        return 'OK'
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=PORT, debug=True, reloader=True)
