@@ -58,6 +58,7 @@ def setup_webhook():
 @app.route("/webhook", method="POST")
 def webhook_handler():
     body = request.json
+	print('\nFSM STATE: ' + machine.state)
     print('REQUEST BODY: ')
     print(body)
 
@@ -65,6 +66,11 @@ def webhook_handler():
         event = body['entry'][0]['messaging'][0]
         machine.advance(event)
         return 'OK'
+		
+@route('/show-fsm', methods=['GET'])
+def show_fsm():
+    machine.get_graph().draw('fsm.png', prog='dot', format='png')
+    return static_file('fsm.png', root='./', mimetype='image/png')
 
 
 if __name__ == "__main__":
