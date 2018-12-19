@@ -3,6 +3,7 @@ import requests
 
 
 GRAPH_URL = "https://graph.facebook.com/v2.6"
+#ACCESS_TOKEN = '123'
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 
 

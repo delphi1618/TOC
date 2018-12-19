@@ -6,7 +6,9 @@ from fsm import TocMachine
 app = Bottle()
 
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
+#VERIFY_TOKEN = '1234'
 PORT = os.environ['PORT']
+#PORT = '12345'
 
 machine = TocMachine(
     states=[
@@ -64,6 +66,10 @@ def webhook_handler():
 
     if body['object'] == "page":
         event = body['entry'][0]['messaging'][0]
+		if event.get("message"):
+            text = 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Tokyo_Metropolitan_Government_Building_2012.JPG'
+            sender_id = event['sender']['id']
+            send_text_message(sender_id, text)
         machine.advance(event)
         return 'OK'
 
