@@ -23,8 +23,14 @@ The facebook messenger chatbot `HappyBot` is designed to make you happy!
 ### fsm.py
  - 定義 FSM 的動作
 
+### Procfile
+ - Heroku 執行指令
+ 
+### Requirement & Aptfile
+ - 本程式所需額外套件
+ 
 
- ## 機器人互動
+## 機器人互動
  
 ### 開始
 輸入訊息與機器人打招呼, 機器人會回覆你操作說明. 主要功能包含三者:
