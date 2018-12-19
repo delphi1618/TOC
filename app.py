@@ -60,7 +60,7 @@ def setup_webhook():
 def webhook_handler():
     body = request.json
     print('\nFSM STATE: ' + machine.state)
-	print('REQUEST BODY: ')
+    print('REQUEST BODY: ')
     print(body)
 
     if body['object'] == "page":
