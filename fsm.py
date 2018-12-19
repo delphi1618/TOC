@@ -197,7 +197,7 @@ class TocMachine(GraphMachine):
         print("I'm entering jp1")
 
         sender_id = event['sender']['id']
-        send_text_message(sender_id, "林北哪有那麼多時間陪你講笑話
+        send_text_message(sender_id, "林北哪有那麼多時間陪你講笑話...")
         send_text_message(sender_id, "Let's start again! If you want to listen to music, type music. If you want to watch some funny videos, type video. If you want to see some jokes, type joke.")
         self.go_back()
 
