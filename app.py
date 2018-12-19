@@ -68,7 +68,7 @@ machine = TocMachine(
         },
         {
             'trigger': 'advance',
-            'source': 'jpl',
+            'source': 'jp1',
             'dest': 'jp2',
             'conditions': 'to_jp2'
         },
