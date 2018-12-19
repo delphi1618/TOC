@@ -70,13 +70,13 @@ def webhook_handler():
             text = 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Tokyo_Metropolitan_Government_Building_2012.JPG'
             sender_id = event['sender']['id']
             send_text_message(sender_id, text)
-        machine.advance(event)
+        # machine.advance(event)
         return 'OK'
-
+"""
 @route('/show-fsm', methods=['GET'])
 def show_fsm():
     machine.get_graph().draw('fsm.png', prog='dot', format='png')
     return static_file('fsm.png', root='./', mimetype='image/png')
-
+"""
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=True, reloader=True)
