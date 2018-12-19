@@ -67,6 +67,10 @@ def webhook_handler():
         machine.advance(event)
         return 'OK'
 
+@route('/show-fsm', methods=['GET'])
+def show_fsm():
+    machine.get_graph().draw('fsm.png', prog='dot', format='png')
+    return static_file('fsm.png', root='./', mimetype='image/png')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=True, reloader=True)
