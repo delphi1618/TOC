@@ -59,7 +59,8 @@ def setup_webhook():
 @app.route("/webhook", method="POST")
 def webhook_handler():
     body = request.json
-    print('REQUEST BODY: ')
+    print('\nFSM STATE: ' + machine.state)
+	print('REQUEST BODY: ')
     print(body)
 
     if body['object'] == "page":
