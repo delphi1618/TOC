@@ -9,7 +9,7 @@ VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 #VERIFY_TOKEN = '1234'
 PORT = os.environ['PORT']
 #PORT = '12345'
-
+"""
 machine = TocMachine(
     states=[
         'user',
@@ -42,7 +42,7 @@ machine = TocMachine(
     auto_transitions=False,
     show_conditions=True,
 )
-
+"""
 
 @app.route("/webhook", method="GET")
 def setup_webhook():
@@ -67,7 +67,7 @@ def webhook_handler():
     if body['object'] == "page":
         event = body['entry'][0]['messaging'][0]
 		if event.get("message"):
-            text = 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Tokyo_Metropolitan_Government_Building_2012.JPG'
+            text = 'text'
             sender_id = event['sender']['id']
             send_text_message(sender_id, text)
         # machine.advance(event)
