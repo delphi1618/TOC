@@ -65,7 +65,6 @@ def webhook_handler():
         event = body['entry'][0]['messaging'][0]
         machine.advance(event)
         return 'OK'
-		
 
 
 if __name__ == "__main__":
