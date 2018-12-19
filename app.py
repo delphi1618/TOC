@@ -70,8 +70,8 @@ def webhook_handler():
             sender_id = event['sender']['id']
             send_text_message(sender_id, text)
 """
-		machine.advance(event)
-		return 'OK'
+        machine.advance(event)
+        return 'OK'
 
 
 if __name__ == "__main__":
