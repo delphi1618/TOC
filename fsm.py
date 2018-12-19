@@ -55,7 +55,7 @@ class TocMachine(GraphMachine):
     def to_ch3(self, event):
         if event.get("message") and event['message'].get("text"):
             text = event['message']['text']
-            return text.lower() == 'lyrics'
+            return text.lower() == 'yes'
         return False
 
     def to_jp1(self, event):
@@ -112,6 +112,12 @@ class TocMachine(GraphMachine):
             return True
         return False
 
+    def to_beg(self, event):
+        if event.get("message") and event['message'].get("text"):
+            text = event['message']['text']
+            return text.lower() == 'no'
+        return False
+
     def on_enter_start1(self, event):
         print("I'm entering start1")
 
@@ -142,34 +148,34 @@ class TocMachine(GraphMachine):
 
         sender_id = event['sender']['id']
         send_text_message(sender_id, "今だってそんなに/自信はないよ/踏み出せない時もあるよ/もし間違ってたり/繰り返しちゃったり/したらどうしようって/選ばないだけなら/不安はないね/だけど変わることも/ないよね/いつだった?　どうなった?/もうダメだって　全ておしまい/だってなってた　あの時何だった?　誰だった?/そんなんでも　なんとか/もう一度って思って進めたのは/2 u, yeah/信じてる　信じられてる/4 u, yeah/空だって　飛べる気がする/ただひとり　君のためなら")
-        send_text_message(sender_id, "If you want to see the translation, type yes. If not, type no to return.")
+        send_text_message(sender_id, "If you want to see the translation, type ok. If not, type no to return.")
 
     def on_enter_jp3(self, event):
         print("I'm entering jp3")
 
         sender_id = event['sender']['id']
-        send_text_message(sender_id, "Translation. HAHAHA!")
+        send_text_message(sender_id, "Translation. HAHAHA! Just kidding. Let's start again!If you want to listen to music, type music. If you want to watch some funny videos, type video. If you want to see some jokes, type joke.")
         self.go_back()
 
     def on_enter_ch1(self, event):
         print("I'm entering jp1")
 
         sender_id = event['sender']['id']
-        send_text_message(sender_id, "https://youtu.be/QohgME8ay8A")
-        send_text_message(sender_id, "If you want to see the lyrics, type yes. If not, type no to return.")
+        send_text_message(sender_id, "https://youtu.be/9oJoVtKoCzA")
+        send_text_message(sender_id, "This one seems too old-fashioned. If you want a newer song, type yes. If not, type no to return.")
 
     def on_enter_ch2(self, event):
         print("I'm entering jp2")
 
         sender_id = event['sender']['id']
-        send_text_message(sender_id, "今だってそんなに/自信はないよ/踏み出せない時もあるよ/もし間違ってたり/繰り返しちゃったり/したらどうしようって/選ばないだけなら/不安はないね/だけど変わることも/ないよね/いつだった?　どうなった?/もうダメだって　全ておしまい/だってなってた　あの時何だった?　誰だった?/そんなんでも　なんとか/もう一度って思って進めたのは/2 u, yeah/信じてる　信じられてる/4 u, yeah/空だって　飛べる気がする/ただひとり　君のためなら")
-        send_text_message(sender_id, "If you want to see the translation, type yes. If not, type no to return.")
+        send_text_message(sender_id, "https://youtu.be/OLimUac1_VU")
+        send_text_message(sender_id, "Is this one better? HAHA If you want to listen to another song, type yes. If not, type no to return.")
 
     def on_enter_ch3(self, event):
         print("I'm entering jp3")
 
         sender_id = event['sender']['id']
-        send_text_message(sender_id, "Translation. HAHAHA!")
+        send_text_message(sender_id, "So sad... Actually, I don't like Chinese music. Let's start from the beginning!If you want to listen to music, type music. If you want to watch some funny videos, type video. If you want to see some jokes, type joke.")
         self.go_back()
 
     def on_enter_joke1(self, event):

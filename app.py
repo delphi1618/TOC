@@ -86,7 +86,7 @@ machine = TocMachine(
         },
         {
             'trigger': 'advance',
-            'source': 'chl',
+            'source': 'ch1',
             'dest': 'ch2',
             'conditions': 'to_ch2'
         },
@@ -132,6 +132,25 @@ machine = TocMachine(
             'dest': 'joke4',
             'conditions': 'to_joke4'
         },
+        {
+            'trigger': 'advance',
+            'source': [
+                'jp1',
+                'jp2',
+                'ch1',
+                'ch2',
+                'music1',
+                'music2',
+                'joke1',
+                'joke2',
+                'joke3',
+                'fun1',
+                'fun2',
+                'fun3',
+            ],
+            'dest': 'start1',
+            'conditions': 'to_beg'
+        }
         {
             'trigger': 'go_back',
             'source': [
