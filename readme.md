@@ -2,10 +2,10 @@
 The facebook messenger chatbot `HappyBot` is designed to make you happy!   
 
 ## Requirement
- python 3.7.1
+ python 3
 
 ### 套件/模組
-- bottle 0.13
+- bottle
 - [transitions](https://github.com/tyarkoni/transitions) 
 - pygraphviz
 
@@ -26,7 +26,7 @@ The facebook messenger chatbot `HappyBot` is designed to make you happy!
 ### Procfile
  - Heroku 執行指令
  
-### Requirement & Aptfile
+### Requirements & Aptfile
  - 本程式所需額外套件
  
 
