@@ -26,7 +26,7 @@ class TocMachine(GraphMachine):
         print("I'm entering state1")
 
         sender_id = event['sender']['id']
-        responese = send_text_message(sender_id, "I'm entering state1")
+        responese = send_text_message(sender_id, "https://upload.wikimedia.org/wikipedia/commons/5/5e/Tokyo_Metropolitan_Government_Building_2012.JPG")
         self.go_back()
 
     def on_exit_state1(self):
